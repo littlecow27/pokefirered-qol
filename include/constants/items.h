@@ -1028,7 +1028,7 @@
 #define ITEM_MOVE_RELEARNER      858
 #define ITEM_BOX_LINK            859
 #define ITEM_POKECENTER_HEAL     860
-#define ITEM_POWDER_JAR          861
+#define ITEM_POWDER_MACHINE      861
 
 #define ITEMS_COUNT 862
 #define ITEM_FIELD_ARROW ITEMS_COUNT

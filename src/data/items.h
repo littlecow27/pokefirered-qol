@@ -15151,10 +15151,10 @@ const struct Item gItemsInfo[] =
         .iconPalette = gItemIconPalette_RareCandy,
     },
 
-    [ITEM_POWDER_JAR] =
+    [ITEM_POWDER_MACHINE] =
     {
-        .name = ITEM_NAME("Powder Jar"),
-        .pluralName = ITEM_PLURAL_NAME("Powder Jars"),
+        .name = ITEM_NAME("Powder Machine"),
+        .pluralName = ITEM_PLURAL_NAME("Powder Machines"),
         .price = 0,
         .description = COMPOUND_STRING(
             "Applies a status "

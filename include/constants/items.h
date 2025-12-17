@@ -1021,7 +1021,16 @@
 #define ITEM_DRAMPANITE 853
 #define ITEM_FALINKSITE 854
 
-#define ITEMS_COUNT 855
+// NEW ITEMS
+#define ITEM_INFINITE_CANDY      855
+#define ITEM_CAP_CANDY           856
+#define ITEM_INFINITE_REPEL      857
+#define ITEM_MOVE_RELEARNER      858
+#define ITEM_BOX_LINK            859
+#define ITEM_POKECENTER_HEAL     860
+#define ITEM_POWDER_JAR          861
+
+#define ITEMS_COUNT 862
 #define ITEM_FIELD_ARROW ITEMS_COUNT
 
 // A special item id associated with "Cancel"/"Exit" etc. in a list of items or decorations

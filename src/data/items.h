@@ -15054,6 +15054,119 @@ const struct Item gItemsInfo[] =
         .iconPic = gItemIcon_PokeshiDoll,
         .iconPalette = gItemIconPalette_PokeshiDoll,
     },
+
+    [ITEM_INFINITE_CANDY] =
+    {
+        .name = ITEM_NAME("Infinite Candy"),
+        .pluralName = ITEM_PLURAL_NAME("Infinite Candies"),
+        .price = 0,
+        .description = COMPOUND_STRING(
+            "Raises the level "
+            "of a Pokémon."),
+        .pocket = POCKET_KEY_ITEMS,
+        .type = ITEM_USE_PARTY_MENU,
+        .fieldUseFunc = ItemUseOutOfBattle_RareCandy,
+        .iconPic = gItemIcon_RareCandy,
+        .iconPalette = gItemIconPalette_RareCandy,
+    },
+
+    [ITEM_CAP_CANDY] =
+    {
+        .name = ITEM_NAME("Cap Candy"),
+        .pluralName = ITEM_PLURAL_NAME("Cap Candies"),
+        .price = 0,
+        .description = COMPOUND_STRING(
+            "Raises the level "
+            "of a Pokémon to\n"
+            "the level cap."),
+        .pocket = POCKET_KEY_ITEMS,
+        .type = ITEM_USE_PARTY_MENU,
+        .fieldUseFunc = ItemUseOutOfBattle_RareCandy,
+        .iconPic = gItemIcon_RareCandy,
+        .iconPalette = gItemIconPalette_RareCandy,
+    },
+
+    [ITEM_INFINITE_REPEL] =
+    {
+        .name = ITEM_NAME("Infinite Repel"),
+        .pluralName = ITEM_PLURAL_NAME("Infinite Repel"),
+        .price = 0,
+        .description = COMPOUND_STRING(
+            "Repels weak wild "
+            "Pokémon when\n"
+            "toggled."),
+        .pocket = POCKET_KEY_ITEMS,
+        .sortType = ITEM_TYPE_FIELD_USE,
+        .type = ITEM_USE_BAG_MENU,
+        .fieldUseFunc = ItemUseOutOfBattle_Repel,
+        .iconPic = gItemIcon_Repel,
+        .iconPalette = gItemIconPalette_Repel,
+    },
+
+    [ITEM_MOVE_RELEARNER] =
+    {
+        .name = ITEM_NAME("Move Relearner"),
+        .pluralName = ITEM_PLURAL_NAME("Move Relearners"),
+        .price = 0,
+        .description = COMPOUND_STRING(
+            "Allows a Pokémon "
+            "to relearn a\n"
+            "move."),
+        .pocket = POCKET_KEY_ITEMS,
+        .type = ITEM_USE_PARTY_MENU,
+        .fieldUseFunc = ItemUseOutOfBattle_RareCandy,
+        .iconPic = gItemIcon_RareCandy,
+        .iconPalette = gItemIconPalette_RareCandy,
+    },
+
+    [ITEM_BOX_LINK] =
+    {
+        .name = ITEM_NAME("Box Link"),
+        .pluralName = ITEM_PLURAL_NAME("Box Links"),
+        .price = 0,
+        .description = COMPOUND_STRING(
+            "Allows you to "
+            "access your PC\n"
+            "from the bag."),
+        .pocket = POCKET_KEY_ITEMS,
+        .type = ITEM_USE_PARTY_MENU,
+        .fieldUseFunc = ItemUseOutOfBattle_RareCandy,
+        .iconPic = gItemIcon_RareCandy,
+        .iconPalette = gItemIconPalette_RareCandy,
+    },
+
+    [ITEM_POKECENTER_HEAL] =
+    {
+        .name = ITEM_NAME("Pokémon MedKit"),
+        .pluralName = ITEM_PLURAL_NAME("Pokémon MedKits"),
+        .price = 0,
+        .description = COMPOUND_STRING(
+            "Heals your entire "
+            "party outside of\n"
+            "battle."),
+        .pocket = POCKET_KEY_ITEMS,
+        .type = ITEM_USE_PARTY_MENU,
+        .fieldUseFunc = ItemUseOutOfBattle_RareCandy,
+        .iconPic = gItemIcon_RareCandy,
+        .iconPalette = gItemIconPalette_RareCandy,
+    },
+
+    [ITEM_POWDER_JAR] =
+    {
+        .name = ITEM_NAME("Powder Jar"),
+        .pluralName = ITEM_PLURAL_NAME("Powder Jars"),
+        .price = 0,
+        .description = COMPOUND_STRING(
+            "Applies a status "
+            "to a Pokémon in\n"
+            "your party."),
+        .pocket = POCKET_KEY_ITEMS,
+        .type = ITEM_USE_PARTY_MENU,
+        .fieldUseFunc = ItemUseOutOfBattle_RareCandy,
+        .iconPic = gItemIcon_RareCandy,
+        .iconPalette = gItemIconPalette_RareCandy,
+    },
+
 };
 
 #undef ITEM_NAME

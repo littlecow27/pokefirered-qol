@@ -15101,7 +15101,7 @@ const struct Item gItemsInfo[] =
         .pocket = POCKET_KEY_ITEMS,
         .sortType = ITEM_TYPE_FIELD_USE,
         .type = ITEM_USE_BAG_MENU,
-        .fieldUseFunc = ItemUseOutOfBattle_Repel,
+        .fieldUseFunc = ItemUseOutOfBattle_InfiniteRepel,
         .iconPic = gItemIcon_Repel,
         .iconPalette = gItemIconPalette_Repel,
     },

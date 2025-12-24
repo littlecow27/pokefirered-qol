@@ -484,13 +484,31 @@ static void ItemUseOnFieldCB_WailmerPailSudowoodo(u8 taskId)
     DestroyTask(taskId);
 }
 
-static const u8 sText_PokeCenterHealDone[] = _("Your Pokémon were fully healed!\p");
+static const u8 sText_PokeCenterHealDone[] = _("Your Pokémon were fully healed.\p");
 static const u8 sText_CantUseHere[] = _("It won’t work right now.\p");
 
 void ItemUseOutOfBattle_PokeCenterHeal(u8 taskId)
 {
     HealPlayerParty();
+    PlaySE(SE_USE_ITEM);
     DisplayItemMessageInCurrentContext(taskId, gTasks[taskId].data[3], FONT_NORMAL, sText_PokeCenterHealDone);
+}
+
+static const u8 sText_InfiniteRepelOn[]  = _("The Infinite Repel was sprayed.\p");
+static const u8 sText_InfiniteRepelOff[] = _("The effect of the repel \nwears off...\p");
+
+void ItemUseOutOfBattle_InfiniteRepel(u8 taskId)
+{
+    if(FlagGet(FLAG_SYS_INFINITE_REPEL_ACTIVE))
+    {
+        PlaySE(SE_EXP_MAX);
+        FlagClear(FLAG_SYS_INFINITE_REPEL_ACTIVE);
+        DisplayItemMessageInCurrentContext(taskId, gTasks[taskId].data[3], FONT_NORMAL, sText_InfiniteRepelOff);
+        return;
+    }
+    PlaySE(SE_EXP_MAX);
+    FlagSet(FLAG_SYS_INFINITE_REPEL_ACTIVE);
+    DisplayItemMessageInCurrentContext(taskId, gTasks[taskId].data[3], FONT_NORMAL, sText_InfiniteRepelOn);
 }
 
 void ItemUseOutOfBattle_PokeFlute(u8 taskId)

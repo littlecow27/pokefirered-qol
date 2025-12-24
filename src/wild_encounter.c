@@ -870,6 +870,19 @@ bool8 UpdateRepelCounter(void)
     u16 steps = REPEL_LURE_STEPS(repelLureVar);
     bool32 isLure = IS_LAST_USED_LURE(repelLureVar);
 
+    if(FlagGet(FLAG_SYS_INFINITE_REPEL_ACTIVE) && !isLure){
+        steps = 1;
+        VarSet(VAR_REPEL_STEP_COUNT, steps);
+        return FALSE;
+    }
+    if(!FlagGet(FLAG_SYS_INFINITE_REPEL_ACTIVE)){
+        if(steps == 1){
+            steps = 0;
+            VarSet(VAR_REPEL_STEP_COUNT, steps);
+            return FALSE;
+        }
+    }
+
     if (InUnionRoom() == TRUE)
         return FALSE;
 

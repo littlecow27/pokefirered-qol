@@ -42,6 +42,7 @@
 #include "constants/moves.h"
 #include "constants/songs.h"
 #include "constants/field_weather.h"
+#include "script_pokemon_util.h"
 
 EWRAM_DATA void (*sItemUseOnFieldCB)(u8 taskId) = NULL;
 
@@ -481,6 +482,15 @@ static void ItemUseOnFieldCB_WailmerPailSudowoodo(u8 taskId)
     // LockPlayerFieldControls();
     // ScriptContext_SetupScript(BattleFrontier_OutsideEast_EventScript_WaterSudowoodo);
     DestroyTask(taskId);
+}
+
+static const u8 sText_PokeCenterHealDone[] = _("Your Pokémon were fully healed!\p");
+static const u8 sText_CantUseHere[] = _("It won’t work right now.\p");
+
+void ItemUseOutOfBattle_PokeCenterHeal(u8 taskId)
+{
+    HealPlayerParty();
+    DisplayItemMessageInCurrentContext(taskId, gTasks[taskId].data[3], FONT_NORMAL, sText_PokeCenterHealDone);
 }
 
 void ItemUseOutOfBattle_PokeFlute(u8 taskId)
@@ -1218,5 +1228,8 @@ void ItemUse_SetQuestLogEvent(u8 eventId, struct Pokemon *pokemon, u16 itemId, u
     SetQuestLogEvent(eventId, (void *)data);
     Free(data);
 }
+
+
+
 
 #undef tUsingRegisteredKeyItem

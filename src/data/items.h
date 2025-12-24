@@ -15063,6 +15063,7 @@ const struct Item gItemsInfo[] =
         .description = COMPOUND_STRING(
             "Raises the level "
             "of a Pokémon."),
+        .importance = 1,
         .pocket = POCKET_KEY_ITEMS,
         .type = ITEM_USE_PARTY_MENU,
         .fieldUseFunc = ItemUseOutOfBattle_RareCandy,
@@ -15079,6 +15080,7 @@ const struct Item gItemsInfo[] =
             "Raises the level "
             "of a Pokémon to\n"
             "the level cap."),
+        .importance = 1,
         .pocket = POCKET_KEY_ITEMS,
         .type = ITEM_USE_PARTY_MENU,
         .fieldUseFunc = ItemUseOutOfBattle_RareCandy,
@@ -15095,6 +15097,7 @@ const struct Item gItemsInfo[] =
             "Repels weak wild "
             "Pokémon when\n"
             "toggled."),
+        .importance = 1,
         .pocket = POCKET_KEY_ITEMS,
         .sortType = ITEM_TYPE_FIELD_USE,
         .type = ITEM_USE_BAG_MENU,
@@ -15112,6 +15115,7 @@ const struct Item gItemsInfo[] =
             "Allows a Pokémon "
             "to relearn a\n"
             "move."),
+        .importance = 1,
         .pocket = POCKET_KEY_ITEMS,
         .type = ITEM_USE_PARTY_MENU,
         .fieldUseFunc = ItemUseOutOfBattle_RareCandy,
@@ -15128,8 +15132,9 @@ const struct Item gItemsInfo[] =
             "Allows you to "
             "access your PC\n"
             "from the bag."),
+        .importance = 1,
         .pocket = POCKET_KEY_ITEMS,
-        .type = ITEM_USE_PARTY_MENU,
+        .type = ITEM_USE_BAG_MENU,
         .fieldUseFunc = ItemUseOutOfBattle_RareCandy,
         .iconPic = gItemIcon_RareCandy,
         .iconPalette = gItemIconPalette_RareCandy,
@@ -15144,9 +15149,10 @@ const struct Item gItemsInfo[] =
             "Heals your entire "
             "party outside of\n"
             "battle."),
+        .importance = 1,
         .pocket = POCKET_KEY_ITEMS,
-        .type = ITEM_USE_PARTY_MENU,
-        .fieldUseFunc = ItemUseOutOfBattle_RareCandy,
+        .type = ITEM_USE_BAG_MENU,
+        .fieldUseFunc = ItemUseOutOfBattle_PokeCenterHeal,
         .iconPic = gItemIcon_RareCandy,
         .iconPalette = gItemIconPalette_RareCandy,
     },
@@ -15160,6 +15166,7 @@ const struct Item gItemsInfo[] =
             "Applies a status "
             "to a Pokémon in\n"
             "your party."),
+        .importance = 1,
         .pocket = POCKET_KEY_ITEMS,
         .type = ITEM_USE_PARTY_MENU,
         .fieldUseFunc = ItemUseOutOfBattle_RareCandy,

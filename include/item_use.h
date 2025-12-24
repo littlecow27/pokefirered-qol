@@ -22,6 +22,7 @@ void ItemUseOutOfBattle_Lure(u8 taskId);
 void ItemUseOutOfBattle_Mail(u8 taskId);
 void ItemUseOutOfBattle_Medicine(u8 taskId);
 void ItemUseOutOfBattle_Mint(u8 taskId);
+void ItemUseOutOfBattle_PokeCenterHeal(u8 taskId);
 void ItemUseOutOfBattle_PokeFlute(u8 taskId);
 void ItemUseOutOfBattle_PokemonBoxLink(u8 taskId);
 void ItemUseOutOfBattle_PowderJar(u8 taskId);

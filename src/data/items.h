@@ -195,7 +195,7 @@ const struct Item gItemsInfo[] =
     [ITEM_POKE_BALL] =
     {
         .name = ITEM_NAME("Poké Ball"),
-        .price = 200,
+        .price = 50,
         .description = COMPOUND_STRING(
             "A tool used for "
             "catching wild "
@@ -211,7 +211,7 @@ const struct Item gItemsInfo[] =
     [ITEM_GREAT_BALL] =
     {
         .name = ITEM_NAME("Great Ball"),
-        .price = 600,
+        .price = 100,
         .description = COMPOUND_STRING(
             "A good Ball with a "
             "higher catch\nrate "
@@ -227,7 +227,7 @@ const struct Item gItemsInfo[] =
     [ITEM_ULTRA_BALL] =
     {
         .name = ITEM_NAME("Ultra Ball"),
-        .price = (I_PRICE >= GEN_7) ? 800 : 1200,
+        .price = (I_PRICE >= GEN_7) ? 200 : 200,
         .description = COMPOUND_STRING(
             "A better Ball with "
             "a higher catch\nrate "
@@ -13468,10 +13468,10 @@ const struct Item gItemsInfo[] =
 
     [ITEM_SUPER_ROD] =
     {
-        .name = ITEM_NAME("Super Rod"),
+        .name = ITEM_NAME("Fishing Rod"),
         .price = 0,
         .description = COMPOUND_STRING(
-            "The best fishing "
+            "A standard fishing "
             "rod for catching\n"
             "wild Pokémon."),
         .importance = 1,
@@ -15387,6 +15387,83 @@ const struct Item gItemsInfo[] =
         .fieldUseFunc = ItemUseOutOfBattle_CannotUse,
         .iconPic = gItemIcon_PokeshiDoll,
         .iconPalette = gItemIconPalette_PokeshiDoll,
+    },
+
+// Custom Level Candies
+
+    [ITEM_INFINITE_CANDY] =
+    {
+        .name = ITEM_NAME("Infinite Candy"),
+        .price = 0,
+        .description = COMPOUND_STRING(
+            "A reusable candy that raises level"
+            "\n one."),
+        .importance = 1,
+        .pocket = POCKET_KEY_ITEMS,
+        .type = ITEM_USE_PARTY_MENU,
+        .fieldUseFunc = ItemUseOutOfBattle_InfiniteCandy,
+        .iconPic = gItemIcon_RareCandy,
+        .iconPalette = gItemIconPalette_RareCandy,
+    },
+
+    [ITEM_CAP_CANDY] =
+    {
+        .name = ITEM_NAME("Cap Candy"),
+        .price = 0,
+        .description = COMPOUND_STRING(
+            "A reusable candy that raises\n"
+            "level to the cap."),
+        .importance = 1,
+        .pocket = POCKET_KEY_ITEMS,
+        .type = ITEM_USE_PARTY_MENU,
+        .fieldUseFunc = ItemUseOutOfBattle_CapCandy,
+        .iconPic = gItemIcon_RareCandy,
+        .iconPalette = gItemIconPalette_RareCandy,
+    },
+
+    [ITEM_REPELLANT] =
+    {
+        .name = ITEM_NAME("Repellant"),
+        .price = 0,
+        .description = COMPOUND_STRING(
+            "A device that repels wild Pokémon\n"
+            "when active."),
+        .importance = 1,
+        .pocket = POCKET_KEY_ITEMS,
+        .type = ITEM_USE_FIELD,
+        .fieldUseFunc = ItemUseOutOfBattle_Repellant,
+        .iconPic = gItemIcon_Repel,
+        .iconPalette = gItemIconPalette_Repel,
+    },
+
+    [ITEM_POWDER_VIAL] =
+    {
+        .name = ITEM_NAME("Powder Vial"),
+        .price = 0,
+        .description = COMPOUND_STRING(
+            "A vial of powder that applies\n"
+            "status conditions.\n"),
+        .importance = 1,
+        .pocket = POCKET_KEY_ITEMS,
+        .type = ITEM_USE_PARTY_MENU,
+        .fieldUseFunc = ItemUseOutOfBattle_PowderVial,
+        .iconPic = gItemIcon_PowderJar,
+        .iconPalette = gItemIconPalette_PowderJar,
+    },
+
+    [ITEM_NURSE_KIT] =
+    {
+        .name = ITEM_NAME("Nurse Kit"),
+        .price = 0,
+        .description = COMPOUND_STRING(
+            "A kit that fully heals all \n"
+            "POKéMON in the party."),
+        .importance = 1,
+        .pocket = POCKET_KEY_ITEMS,
+        .type = ITEM_USE_FIELD,
+        .fieldUseFunc = ItemUseOutOfBattle_NurseKit,
+        .iconPic = gItemIcon_FullHeal,
+        .iconPalette = gItemIconPalette_FullHeal,
     },
 };
 

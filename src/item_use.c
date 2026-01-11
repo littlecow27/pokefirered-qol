@@ -30,12 +30,14 @@
 #include "quest_log.h"
 #include "region_map.h"
 #include "script.h"
+#include "script_pokemon_util.h"
 #include "strings.h"
 #include "task.h"
 #include "teachy_tv.h"
 #include "tm_case.h"
 #include "vs_seeker.h"
 #include "constants/sound.h"
+#include "constants/flags.h"
 #include "constants/items.h"
 #include "constants/item_effects.h"
 #include "constants/maps.h"
@@ -242,6 +244,27 @@ void ItemUseOutOfBattle_ExpShare(u8 taskId)
 #endif
 }
 
+void ItemUseOutOfBattle_Repellant(u8 taskId)
+{
+    if (FlagGet(FLAG_SYS_REPELLANT_ACTIVE))
+    {
+        PlaySE(SE_PC_OFF);
+        if (!gTasks[taskId].data[2]) // to account for pressing select in the overworld
+            DisplayItemMessageOnField(taskId, FONT_NORMAL, gText_RepellantOff, Task_ItemUse_CloseMessageBoxAndReturnToField);
+        else
+            DisplayItemMessage(taskId, FONT_NORMAL, gText_RepellantOff, CloseItemMessage);
+    }
+    else
+    {
+        PlaySE(SE_REPEL);
+        if (!gTasks[taskId].data[2]) // to account for pressing select in the overworld
+            DisplayItemMessageOnField(taskId, FONT_NORMAL, gText_RepellantOn, Task_ItemUse_CloseMessageBoxAndReturnToField);
+        else
+            DisplayItemMessage(taskId, FONT_NORMAL, gText_RepellantOn, CloseItemMessage);
+    }
+    FlagToggle(FLAG_SYS_REPELLANT_ACTIVE);
+}
+
 void ItemUseOutOfBattle_Bike(u8 taskId)
 {
     s16 x, y;
@@ -396,8 +419,15 @@ void ItemUseOutOfBattle_Itemfinder(u8 taskId)
 
 void ItemUseOutOfBattle_PokemonBoxLink(u8 taskId)
 {
-    sItemUseOnFieldCB = Task_AccessPokemonBoxLink;
-    SetUpItemUseOnFieldCallback(taskId);
+    if (FlagGet(FLAG_DISABLE_BOX_LINK))
+    {
+        DisplayItemMessageInCurrentContext(taskId, gTasks[taskId].data[3], FONT_NORMAL, gText_BoxLinkBlockedEliteFour);
+    }
+    else
+    {
+        sItemUseOnFieldCB = Task_AccessPokemonBoxLink;
+        SetUpItemUseOnFieldCallback(taskId);
+    }
 }
 
 static void Task_AccessPokemonBoxLink(u8 taskId)
@@ -640,6 +670,34 @@ void ItemUseOutOfBattle_RareCandy(u8 taskId)
 {
     gItemUseCB = ItemUseCB_RareCandy;
     DoSetUpItemUseCallback(taskId);
+}
+
+void ItemUseOutOfBattle_InfiniteCandy(u8 taskId)
+{
+    gItemUseCB = ItemUseCB_InfiniteCandy;
+    DoSetUpItemUseCallback(taskId);
+}
+
+void ItemUseOutOfBattle_CapCandy(u8 taskId)
+{
+    gItemUseCB = ItemUseCB_CapCandy;
+    DoSetUpItemUseCallback(taskId);
+}
+
+void ItemUseOutOfBattle_PowderVial(u8 taskId)
+{
+    gItemUseCB = ItemUseCB_PowderVial;
+    DoSetUpItemUseCallback(taskId);
+}
+
+void ItemUseOutOfBattle_NurseKit(u8 taskId)
+{
+    HealPlayerParty();
+    PlaySE(SE_USE_ITEM);
+    if (!gTasks[taskId].data[2])
+        DisplayItemMessageOnField(taskId, FONT_NORMAL, gText_PartyFullyHealed, Task_ItemUse_CloseMessageBoxAndReturnToField);
+    else
+        DisplayItemMessage(taskId, FONT_NORMAL, gText_PartyFullyHealed, CloseItemMessage);
 }
 
 void ItemUseOutOfBattle_EvolutionStone(u8 taskId)

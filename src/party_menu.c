@@ -183,6 +183,15 @@ static void CursorCB_CatalogFan(u8);
 static void CursorCB_CatalogMower(u8);
 static void CursorCB_ChangeForm(u8);
 static void CursorCB_ChangeAbility(u8);
+// Powder Vial status callbacks
+static void CursorCB_StatusPoison(u8);
+static void CursorCB_StatusBurn(u8);
+static void CursorCB_StatusParalysis(u8);
+static void CursorCB_StatusSleep(u8);
+static void CursorCB_StatusFreeze(u8);
+static void CursorCB_StatusToxic(u8);
+static bool8 CanApplyStatus(struct Pokemon *mon, u32 status);
+static void TryApplyStatus(u8 taskId, u32 status);
 static void CB2_InitPartyMenu(void);
 static void CB2_ReloadPartyMenu(void);
 static void ResetPartyMenu(void);
@@ -350,6 +359,8 @@ static void Task_StopLearningMoveYesNo(u8 taskId);
 static void Task_HandleStopLearningMoveYesNoInput(u8 taskId);
 static void Task_TryLearningNextMoveAfterText(u8 taskId);
 static void ItemUseCB_RareCandyStep(u8 taskId, TaskFunc func);
+static void ItemUseCB_InfiniteCandyStep(u8 taskId, TaskFunc func);
+static void ItemUseCB_CapCandyStep(u8 taskId, TaskFunc func);
 static void Task_DisplayLevelUpStatsPg1(u8 taskId);
 static void Task_DisplayLevelUpStatsPg2(u8 taskId);
 static void UpdateMonDisplayInfoAfterRareCandy(u8 slot, struct Pokemon *mon);
@@ -2745,6 +2756,9 @@ static u8 DisplaySelectionWindow(u8 windowType)
         break;
     case SELECTWINDOW_ZYGARDECUBE:
         window = sZygardeCubeSelectWindowTemplate;
+        break;
+    case SELECTWINDOW_POWDER_VIAL:
+        window = sPowderVialSelectWindowTemplate;
         break;
     default: // SELECTWINDOW_MOVES
         window = sMoveSelectWindowTemplate;
@@ -5785,6 +5799,179 @@ static void ItemUseCB_RareCandyStep(u8 taskId, TaskFunc func)
     }
 }
 
+// Infinite Candy - raises level by 1, not consumed (key item)
+// If at max level/cap but has pending level-up evolution, triggers evolution instead
+void ItemUseCB_InfiniteCandy(u8 taskId, TaskFunc func)
+{
+    struct Pokemon *mon = &gPlayerParty[gPartyMenu.slotId];
+    bool8 cannotUseEffect;
+    u32 levelCap = GetCurrentLevelCap();
+
+    sInitialLevel = GetMonData(mon, MON_DATA_LEVEL);
+    if (sInitialLevel >= levelCap || sInitialLevel >= MAX_LEVEL)
+    {
+        cannotUseEffect = TRUE;
+    }
+    else
+    {
+        GetMonLevelUpWindowStats(mon, sLevelUpStatsBefore);
+        cannotUseEffect = ExecuteTableBasedItemEffect(mon, ITEM_RARE_CANDY, gPartyMenu.slotId, 0);
+        GetMonLevelUpWindowStats(mon, sLevelUpStatsAfter);
+    }
+    PlaySE(SE_SELECT);
+    if (cannotUseEffect)
+    {
+        u16 targetSpecies = SPECIES_NONE;
+        bool32 canStopEvo = TRUE;
+
+        // Resets values to 0 so other means of teaching moves doesn't overwrite levels
+        sInitialLevel = 0;
+        sFinalLevel = 0;
+
+        // Check if there's a pending level-up evolution that was already exceeded
+        targetSpecies = GetEvolutionTargetSpecies(mon, EVO_MODE_NORMAL, ITEM_NONE, NULL, &canStopEvo, CHECK_EVO);
+
+        if (targetSpecies != SPECIES_NONE)
+        {
+            GetEvolutionTargetSpecies(mon, EVO_MODE_NORMAL, ITEM_NONE, NULL, &canStopEvo, DO_EVO);
+            // Key item - do NOT remove from bag
+            FreePartyPointers();
+            gCB2_AfterEvolution = gPartyMenu.exitCallback;
+            BeginEvolutionScene(mon, targetSpecies, canStopEvo, gPartyMenu.slotId);
+            DestroyTask(taskId);
+        }
+        else
+        {
+            gPartyMenuUseExitCallback = FALSE;
+            DisplayPartyMenuMessage(gText_WontHaveEffect, TRUE);
+            ScheduleBgCopyTilemapToVram(2);
+            gTasks[taskId].func = func;
+        }
+    }
+    else
+    {
+        sFinalLevel = GetMonData(mon, MON_DATA_LEVEL, NULL);
+        AdjustFriendship(mon, FRIENDSHIP_EVENT_GROW_LEVEL);
+        Task_DoUseItemAnim(taskId);
+        gItemUseCB = ItemUseCB_InfiniteCandyStep;
+    }
+}
+
+static void ItemUseCB_InfiniteCandyStep(u8 taskId, TaskFunc func)
+{
+    struct Pokemon *mon = &gPlayerParty[gPartyMenu.slotId];
+    u8 i;
+
+    for (i = 0; i < NUM_STATS; i++) {
+        sPartyMenuInternal->data[i] = sLevelUpStatsBefore[i];
+        sPartyMenuInternal->data[NUM_STATS + i] = sLevelUpStatsAfter[i];
+    }
+
+    gPartyMenuUseExitCallback = TRUE;
+    ItemUse_SetQuestLogEvent(QL_EVENT_USED_ITEM, mon, gSpecialVar_ItemId, 0xFFFF);
+    UpdateMonDisplayInfoAfterRareCandy(gPartyMenu.slotId, mon);
+    // Key item - do NOT remove from bag
+    GetMonNickname(mon, gStringVar1);
+    PlayFanfareByFanfareNum(FANFARE_LEVEL_UP);
+    ConvertIntToDecimalStringN(gStringVar2, sFinalLevel, STR_CONV_MODE_LEFT_ALIGN, 3);
+    StringExpandPlaceholders(gStringVar4, gText_PkmnElevatedToLvVar2);
+    DisplayPartyMenuMessage(gStringVar4, TRUE);
+    ScheduleBgCopyTilemapToVram(2);
+    gTasks[taskId].func = Task_DisplayLevelUpStatsPg1;
+}
+
+// Cap Candy - raises level to current cap, not consumed (key item)
+// If at max level/cap but has pending level-up evolution, triggers evolution instead
+void ItemUseCB_CapCandy(u8 taskId, TaskFunc func)
+{
+    struct Pokemon *mon = &gPlayerParty[gPartyMenu.slotId];
+    bool8 cannotUseEffect = FALSE;
+    u32 levelCap = GetCurrentLevelCap();
+    u32 currentLevel;
+    u8 i;
+
+    sInitialLevel = GetMonData(mon, MON_DATA_LEVEL);
+    currentLevel = sInitialLevel;
+
+    if (currentLevel >= levelCap || currentLevel >= MAX_LEVEL)
+    {
+        cannotUseEffect = TRUE;
+    }
+    else
+    {
+        GetMonLevelUpWindowStats(mon, sLevelUpStatsBefore);
+        // Level up repeatedly until we hit the cap
+        while (currentLevel < levelCap && currentLevel < MAX_LEVEL)
+        {
+            ExecuteTableBasedItemEffect(mon, ITEM_RARE_CANDY, gPartyMenu.slotId, 0);
+            currentLevel = GetMonData(mon, MON_DATA_LEVEL);
+        }
+        GetMonLevelUpWindowStats(mon, sLevelUpStatsAfter);
+    }
+
+    PlaySE(SE_SELECT);
+    if (cannotUseEffect)
+    {
+        u16 targetSpecies = SPECIES_NONE;
+        bool32 canStopEvo = TRUE;
+
+        // Resets values to 0 so other means of teaching moves doesn't overwrite levels
+        sInitialLevel = 0;
+        sFinalLevel = 0;
+
+        // Check if there's a pending level-up evolution that was already exceeded
+        targetSpecies = GetEvolutionTargetSpecies(mon, EVO_MODE_NORMAL, ITEM_NONE, NULL, &canStopEvo, CHECK_EVO);
+
+        if (targetSpecies != SPECIES_NONE)
+        {
+            GetEvolutionTargetSpecies(mon, EVO_MODE_NORMAL, ITEM_NONE, NULL, &canStopEvo, DO_EVO);
+            // Key item - do NOT remove from bag
+            FreePartyPointers();
+            gCB2_AfterEvolution = gPartyMenu.exitCallback;
+            BeginEvolutionScene(mon, targetSpecies, canStopEvo, gPartyMenu.slotId);
+            DestroyTask(taskId);
+        }
+        else
+        {
+            gPartyMenuUseExitCallback = FALSE;
+            DisplayPartyMenuMessage(gText_WontHaveEffect, TRUE);
+            ScheduleBgCopyTilemapToVram(2);
+            gTasks[taskId].func = func;
+        }
+    }
+    else
+    {
+        sFinalLevel = GetMonData(mon, MON_DATA_LEVEL, NULL);
+        for (i = sInitialLevel; i < sFinalLevel; i++)
+            AdjustFriendship(mon, FRIENDSHIP_EVENT_GROW_LEVEL);
+        Task_DoUseItemAnim(taskId);
+        gItemUseCB = ItemUseCB_CapCandyStep;
+    }
+}
+
+static void ItemUseCB_CapCandyStep(u8 taskId, TaskFunc func)
+{
+    struct Pokemon *mon = &gPlayerParty[gPartyMenu.slotId];
+    u8 i;
+
+    for (i = 0; i < NUM_STATS; i++) {
+        sPartyMenuInternal->data[i] = sLevelUpStatsBefore[i];
+        sPartyMenuInternal->data[NUM_STATS + i] = sLevelUpStatsAfter[i];
+    }
+
+    gPartyMenuUseExitCallback = TRUE;
+    ItemUse_SetQuestLogEvent(QL_EVENT_USED_ITEM, mon, gSpecialVar_ItemId, 0xFFFF);
+    UpdateMonDisplayInfoAfterRareCandy(gPartyMenu.slotId, mon);
+    // Key item - do NOT remove from bag
+    GetMonNickname(mon, gStringVar1);
+    PlayFanfareByFanfareNum(FANFARE_LEVEL_UP);
+    ConvertIntToDecimalStringN(gStringVar2, sFinalLevel, STR_CONV_MODE_LEFT_ALIGN, 3);
+    StringExpandPlaceholders(gStringVar4, gText_PkmnElevatedToLvVar2);
+    DisplayPartyMenuMessage(gStringVar4, TRUE);
+    ScheduleBgCopyTilemapToVram(2);
+    gTasks[taskId].func = Task_DisplayLevelUpStatsPg1;
+}
+
 static void UpdateMonDisplayInfoAfterRareCandy(u8 slot, struct Pokemon *mon)
 {
     SetPartyMonAilmentGfx(mon, &sPartyMenuBoxes[slot]);
@@ -7867,5 +8054,193 @@ u32 Party_FirstMonWithMove(u16 moveId)
             return i;
     }
     return PARTY_SIZE;
+}
+
+// Powder Vial - applies status conditions
+void ItemUseCB_PowderVial(u8 taskId, TaskFunc task)
+{
+    struct Pokemon *mon = &gPlayerParty[gPartyMenu.slotId];
+    u32 currentStatus = GetMonData(mon, MON_DATA_STATUS, NULL);
+
+    // Check if Pokemon already has a status
+    if (currentStatus != 0)
+    {
+        gPartyMenuUseExitCallback = FALSE;
+        GetMonNickname(mon, gStringVar1);
+        StringExpandPlaceholders(gStringVar4, gText_PkmnAlreadyHasStatus);
+        DisplayPartyMenuMessage(gStringVar4, TRUE);
+        ScheduleBgCopyTilemapToVram(2);
+        gTasks[taskId].func = task;
+        return;
+    }
+
+    // Check if Pokemon is an egg
+    if (GetMonData(mon, MON_DATA_IS_EGG, NULL))
+    {
+        gPartyMenuUseExitCallback = FALSE;
+        DisplayPartyMenuMessage(gText_WontHaveEffect, TRUE);
+        ScheduleBgCopyTilemapToVram(2);
+        gTasks[taskId].func = task;
+        return;
+    }
+
+    PartyMenuRemoveWindow(&sPartyMenuInternal->windowId[0]);
+    PartyMenuRemoveWindow(&sPartyMenuInternal->windowId[1]);
+    SetPartyMonSelectionActions(gPlayerParty, gPartyMenu.slotId, ACTIONS_POWDER_VIAL);
+    DisplaySelectionWindow(SELECTWINDOW_POWDER_VIAL);
+    DisplayPartyMenuStdMessage(PARTY_MSG_CHOOSE_MON);
+    gTasks[taskId].data[0] = 0xFF;
+    gTasks[taskId].func = Task_HandleSelectionMenuInput;
+}
+
+// Check if a Pokemon can receive a specific status
+static bool8 CanApplyStatus(struct Pokemon *mon, u32 status)
+{
+    u16 species = GetMonData(mon, MON_DATA_SPECIES, NULL);
+    u16 ability = GetMonAbility(mon);
+    u8 type1 = gSpeciesInfo[species].types[0];
+    u8 type2 = gSpeciesInfo[species].types[1];
+
+    // Abilities that grant full status immunity
+    if (ability == ABILITY_COMATOSE || ability == ABILITY_PURIFYING_SALT)
+        return FALSE;
+
+    switch (status)
+    {
+    case STATUS1_POISON:
+    case STATUS1_TOXIC_POISON:
+        // Poison/Steel types immune
+        if (type1 == TYPE_POISON || type2 == TYPE_POISON ||
+            type1 == TYPE_STEEL || type2 == TYPE_STEEL)
+            return FALSE;
+        // Immunity, Poison Heal, Pastel Veil abilities
+        if (ability == ABILITY_IMMUNITY || ability == ABILITY_POISON_HEAL || ability == ABILITY_PASTEL_VEIL)
+            return FALSE;
+        break;
+
+    case STATUS1_BURN:
+        // Fire types immune
+        if (type1 == TYPE_FIRE || type2 == TYPE_FIRE)
+            return FALSE;
+        // Water Veil, Water Bubble, Thermal Exchange abilities
+        if (ability == ABILITY_WATER_VEIL || ability == ABILITY_WATER_BUBBLE || ability == ABILITY_THERMAL_EXCHANGE)
+            return FALSE;
+        break;
+
+    case STATUS1_PARALYSIS:
+        // Electric types immune (Gen 6+)
+        if (type1 == TYPE_ELECTRIC || type2 == TYPE_ELECTRIC)
+            return FALSE;
+        // Limber ability
+        if (ability == ABILITY_LIMBER)
+            return FALSE;
+        break;
+
+    case STATUS1_SLEEP:
+        // Insomnia, Vital Spirit, Sweet Veil abilities
+        if (ability == ABILITY_INSOMNIA || ability == ABILITY_VITAL_SPIRIT || ability == ABILITY_SWEET_VEIL)
+            return FALSE;
+        break;
+
+    case STATUS1_FREEZE:
+        // Ice types immune
+        if (type1 == TYPE_ICE || type2 == TYPE_ICE)
+            return FALSE;
+        // Magma Armor ability
+        if (ability == ABILITY_MAGMA_ARMOR)
+            return FALSE;
+        break;
+    }
+
+    return TRUE;
+}
+
+static void TryApplyStatus(u8 taskId, u32 status)
+{
+    struct Pokemon *mon = &gPlayerParty[gPartyMenu.slotId];
+    const u8 *statusName;
+
+    if (!CanApplyStatus(mon, status))
+    {
+        // Pokemon is immune
+        gPartyMenuUseExitCallback = FALSE;
+        PlaySE(SE_SELECT);
+        DisplayPartyMenuMessage(gText_WontHaveEffect, TRUE);
+        ScheduleBgCopyTilemapToVram(2);
+        gTasks[taskId].func = Task_ClosePartyMenuAfterText;
+        return;
+    }
+
+    // Get the status name for the message
+    switch (status)
+    {
+    case STATUS1_POISON:
+        statusName = gText_StatusPoison;
+        break;
+    case STATUS1_BURN:
+        statusName = gText_StatusBurn;
+        break;
+    case STATUS1_PARALYSIS:
+        statusName = gText_StatusParalysis;
+        break;
+    case STATUS1_FREEZE:
+        statusName = gText_StatusFreeze;
+        break;
+    case STATUS1_TOXIC_POISON:
+        statusName = gText_StatusToxic;
+        break;
+    default:
+        statusName = gText_StatusSleep;
+        break;
+    }
+
+    // Apply the status
+    SetMonData(mon, MON_DATA_STATUS, &status);
+    gPartyMenuUseExitCallback = TRUE;
+    PlaySE(SE_USE_ITEM);
+    UpdatePartyMonHPBar(gPartyMenu.slotId, mon);
+    GetMonNickname(mon, gStringVar1);
+    StringCopy(gStringVar2, statusName);
+    StringExpandPlaceholders(gStringVar4, gText_StatusApplied);
+    DisplayPartyMenuMessage(gStringVar4, TRUE);
+    ScheduleBgCopyTilemapToVram(2);
+    gTasks[taskId].func = Task_ClosePartyMenuAfterText;
+}
+
+static void CursorCB_StatusPoison(u8 taskId)
+{
+    PartyMenuRemoveWindow(&sPartyMenuInternal->windowId[0]);
+    TryApplyStatus(taskId, STATUS1_POISON);
+}
+
+static void CursorCB_StatusBurn(u8 taskId)
+{
+    PartyMenuRemoveWindow(&sPartyMenuInternal->windowId[0]);
+    TryApplyStatus(taskId, STATUS1_BURN);
+}
+
+static void CursorCB_StatusParalysis(u8 taskId)
+{
+    PartyMenuRemoveWindow(&sPartyMenuInternal->windowId[0]);
+    TryApplyStatus(taskId, STATUS1_PARALYSIS);
+}
+
+static void CursorCB_StatusSleep(u8 taskId)
+{
+    PartyMenuRemoveWindow(&sPartyMenuInternal->windowId[0]);
+    // Sleep for 3 turns (a reasonable default)
+    TryApplyStatus(taskId, STATUS1_SLEEP_TURN(3));
+}
+
+static void CursorCB_StatusFreeze(u8 taskId)
+{
+    PartyMenuRemoveWindow(&sPartyMenuInternal->windowId[0]);
+    TryApplyStatus(taskId, STATUS1_FREEZE);
+}
+
+static void CursorCB_StatusToxic(u8 taskId)
+{
+    PartyMenuRemoveWindow(&sPartyMenuInternal->windowId[0]);
+    TryApplyStatus(taskId, STATUS1_TOXIC_POISON);
 }
 

@@ -611,7 +611,7 @@ const struct SpeciesInfo gSpeciesInfoGen5[] =
         .friendship = STANDARD_FRIENDSHIP,
         .growthRate = GROWTH_MEDIUM_SLOW,
         .eggGroups = MON_EGG_GROUPS(EGG_GROUP_FIELD),
-        .abilities = { ABILITY_TORRENT, ABILITY_NONE, ABILITY_SHELL_ARMOR },
+        .abilities = { ABILITY_TORRENT, ABILITY_SHELL_ARMOR, ABILITY_SHELL_ARMOR },
         .bodyColor = BODY_COLOR_BLUE,
         .speciesName = _("Oshawott"),
         .cryId = CRY_OSHAWOTT,
@@ -684,7 +684,7 @@ const struct SpeciesInfo gSpeciesInfoGen5[] =
         .friendship = STANDARD_FRIENDSHIP,
         .growthRate = GROWTH_MEDIUM_SLOW,
         .eggGroups = MON_EGG_GROUPS(EGG_GROUP_FIELD),
-        .abilities = { ABILITY_TORRENT, ABILITY_NONE, ABILITY_SHELL_ARMOR },
+        .abilities = { ABILITY_TORRENT, ABILITY_SHELL_ARMOR, ABILITY_SHELL_ARMOR },
         .bodyColor = BODY_COLOR_BLUE,
         .speciesName = _("Dewott"),
         .cryId = CRY_DEWOTT,
@@ -755,7 +755,7 @@ const struct SpeciesInfo gSpeciesInfoGen5[] =
         .friendship = STANDARD_FRIENDSHIP,
         .growthRate = GROWTH_MEDIUM_SLOW,
         .eggGroups = MON_EGG_GROUPS(EGG_GROUP_FIELD),
-        .abilities = { ABILITY_TORRENT, ABILITY_NONE, ABILITY_SHELL_ARMOR },
+        .abilities = { ABILITY_TORRENT, ABILITY_SHELL_ARMOR, ABILITY_SHELL_ARMOR },
         .bodyColor = BODY_COLOR_BLUE,
         .speciesName = _("Samurott"),
         .cryId = CRY_SAMUROTT,
@@ -2461,8 +2461,7 @@ const struct SpeciesInfo gSpeciesInfoGen5[] =
         )
         .levelUpLearnset = sBoldoreLevelUpLearnset,
         .teachableLearnset = sBoldoreTeachableLearnset,
-        .evolutions = EVOLUTION({EVO_TRADE, 0, SPECIES_GIGALITH},
-                                {EVO_ITEM, ITEM_LINKING_CORD, SPECIES_GIGALITH}),
+        .evolutions = EVOLUTION({EVO_LEVEL, 38, SPECIES_GIGALITH}),
     },
 
     [SPECIES_GIGALITH] =
@@ -2491,7 +2490,7 @@ const struct SpeciesInfo gSpeciesInfoGen5[] =
         .growthRate = GROWTH_MEDIUM_SLOW,
         .eggGroups = MON_EGG_GROUPS(EGG_GROUP_MINERAL),
     #if P_UPDATED_ABILITIES >= GEN_7
-        .abilities = { ABILITY_STURDY, ABILITY_SAND_STREAM, ABILITY_SAND_FORCE },
+        .abilities = { ABILITY_STURDY, ABILITY_WEAK_ARMOR, ABILITY_SAND_FORCE },
     #else
         .abilities = { ABILITY_STURDY, ABILITY_NONE, ABILITY_SAND_FORCE },
     #endif
@@ -2563,7 +2562,7 @@ const struct SpeciesInfo gSpeciesInfoGen5[] =
         .friendship = STANDARD_FRIENDSHIP,
         .growthRate = GROWTH_MEDIUM_FAST,
         .eggGroups = MON_EGG_GROUPS(EGG_GROUP_FIELD, EGG_GROUP_FLYING),
-        .abilities = { ABILITY_UNAWARE, ABILITY_KLUTZ, ABILITY_SIMPLE },
+        .abilities = { ABILITY_UNAWARE, ABILITY_SIMPLE, ABILITY_SIMPLE },
         .bodyColor = BODY_COLOR_BLUE,
         .speciesName = _("Woobat"),
         .cryId = CRY_WOOBAT,
@@ -2629,7 +2628,7 @@ const struct SpeciesInfo gSpeciesInfoGen5[] =
         .levelUpLearnset = sWoobatLevelUpLearnset,
         .teachableLearnset = sWoobatTeachableLearnset,
         .eggMoveLearnset = sWoobatEggMoveLearnset,
-        .evolutions = EVOLUTION({EVO_LEVEL, 0, SPECIES_SWOOBAT, CONDITIONS({IF_MIN_FRIENDSHIP, FRIENDSHIP_EVO_THRESHOLD})}),
+        .evolutions = EVOLUTION({EVO_LEVEL, 30, SPECIES_SWOOBAT}),
     },
 
     [SPECIES_SWOOBAT] =
@@ -2649,7 +2648,7 @@ const struct SpeciesInfo gSpeciesInfoGen5[] =
         .friendship = STANDARD_FRIENDSHIP,
         .growthRate = GROWTH_MEDIUM_FAST,
         .eggGroups = MON_EGG_GROUPS(EGG_GROUP_FIELD, EGG_GROUP_FLYING),
-        .abilities = { ABILITY_UNAWARE, ABILITY_KLUTZ, ABILITY_SIMPLE },
+        .abilities = { ABILITY_UNAWARE, ABILITY_SIMPLE, ABILITY_SIMPLE },
         .bodyColor = BODY_COLOR_BLUE,
         .speciesName = _("Swoobat"),
         .cryId = CRY_SWOOBAT,
@@ -2774,7 +2773,7 @@ const struct SpeciesInfo gSpeciesInfoGen5[] =
         .levelUpLearnset = sDrilburLevelUpLearnset,
         .teachableLearnset = sDrilburTeachableLearnset,
         .eggMoveLearnset = sDrilburEggMoveLearnset,
-        .evolutions = EVOLUTION({EVO_LEVEL, 31, SPECIES_EXCADRILL}),
+        .evolutions = EVOLUTION({EVO_LEVEL, 39, SPECIES_EXCADRILL}),
     },
 
     [SPECIES_EXCADRILL] =
@@ -3878,7 +3877,7 @@ const struct SpeciesInfo gSpeciesInfoGen5[] =
         .growthRate = GROWTH_MEDIUM_SLOW,
         .eggGroups = MON_EGG_GROUPS(EGG_GROUP_BUG),
     #if P_UPDATED_ABILITIES >= GEN_6
-        .abilities = { ABILITY_POISON_POINT, ABILITY_SWARM, ABILITY_SPEED_BOOST },
+        .abilities = { ABILITY_SWARM, ABILITY_SPEED_BOOST, ABILITY_SPEED_BOOST },
     #else
         .abilities = { ABILITY_POISON_POINT, ABILITY_SWARM, ABILITY_QUICK_FEET },
     #endif
@@ -3934,7 +3933,7 @@ const struct SpeciesInfo gSpeciesInfoGen5[] =
         .levelUpLearnset = sVenipedeLevelUpLearnset,
         .teachableLearnset = sVenipedeTeachableLearnset,
         .eggMoveLearnset = sVenipedeEggMoveLearnset,
-        .evolutions = EVOLUTION({EVO_LEVEL, 22, SPECIES_WHIRLIPEDE}),
+        .evolutions = EVOLUTION({EVO_LEVEL, 14, SPECIES_WHIRLIPEDE}),
     },
 
     [SPECIES_WHIRLIPEDE] =
@@ -3956,7 +3955,7 @@ const struct SpeciesInfo gSpeciesInfoGen5[] =
         .growthRate = GROWTH_MEDIUM_SLOW,
         .eggGroups = MON_EGG_GROUPS(EGG_GROUP_BUG),
     #if P_UPDATED_ABILITIES >= GEN_6
-        .abilities = { ABILITY_POISON_POINT, ABILITY_SWARM, ABILITY_SPEED_BOOST },
+        .abilities = { ABILITY_SWARM, ABILITY_SPEED_BOOST, ABILITY_SPEED_BOOST },
     #else
         .abilities = { ABILITY_POISON_POINT, ABILITY_SWARM, ABILITY_QUICK_FEET },
     #endif
@@ -4038,7 +4037,7 @@ const struct SpeciesInfo gSpeciesInfoGen5[] =
         .growthRate = GROWTH_MEDIUM_SLOW,
         .eggGroups = MON_EGG_GROUPS(EGG_GROUP_BUG),
     #if P_UPDATED_ABILITIES >= GEN_6
-        .abilities = { ABILITY_POISON_POINT, ABILITY_SWARM, ABILITY_SPEED_BOOST },
+        .abilities = { ABILITY_SWARM, ABILITY_SPEED_BOOST, ABILITY_SPEED_BOOST },
     #else
         .abilities = { ABILITY_POISON_POINT, ABILITY_SWARM, ABILITY_QUICK_FEET },
     #endif
@@ -4946,7 +4945,7 @@ const struct SpeciesInfo gSpeciesInfoGen5[] =
         .levelUpLearnset = sSandileLevelUpLearnset,
         .teachableLearnset = sSandileTeachableLearnset,
         .eggMoveLearnset = sSandileEggMoveLearnset,
-        .evolutions = EVOLUTION({EVO_LEVEL, 29, SPECIES_KROKOROK}),
+        .evolutions = EVOLUTION({EVO_LEVEL, 26, SPECIES_KROKOROK}),
     },
 
     [SPECIES_KROKOROK] =
@@ -5358,7 +5357,7 @@ const struct SpeciesInfo gSpeciesInfoGen5[] =
         .teachableLearnset = sDarumakaGalarTeachableLearnset,
         .eggMoveLearnset = sDarumakaGalarEggMoveLearnset,
         .formSpeciesIdTable = sDarumakaFormSpeciesIdTable,
-        .evolutions = EVOLUTION({EVO_ITEM, ITEM_ICE_STONE, SPECIES_DARMANITAN_GALAR_STANDARD}),
+        .evolutions = EVOLUTION({EVO_LEVEL, 50, SPECIES_DARMANITAN_GALAR_STANDARD}),
     },
 
     [SPECIES_DARMANITAN_GALAR_STANDARD] =
@@ -5635,7 +5634,7 @@ const struct SpeciesInfo gSpeciesInfoGen5[] =
         .levelUpLearnset = sDwebbleLevelUpLearnset,
         .teachableLearnset = sDwebbleTeachableLearnset,
         .eggMoveLearnset = sDwebbleEggMoveLearnset,
-        .evolutions = EVOLUTION({EVO_LEVEL, 34, SPECIES_CRUSTLE}),
+        .evolutions = EVOLUTION({EVO_LEVEL, 28, SPECIES_CRUSTLE}),
     },
 
     [SPECIES_CRUSTLE] =
@@ -6215,7 +6214,7 @@ const struct SpeciesInfo gSpeciesInfoGen5[] =
         .teachableLearnset = sYamaskGalarTeachableLearnset,
         .eggMoveLearnset = sYamaskGalarEggMoveLearnset,
         .formSpeciesIdTable = sYamaskFormSpeciesIdTable,
-        .evolutions = EVOLUTION({EVO_SCRIPT_TRIGGER, 0, SPECIES_RUNERIGUS, CONDITIONS({IF_CURRENT_DAMAGE_GE, 49})}),
+        .evolutions = EVOLUTION({EVO_LEVEL, 32, SPECIES_RUNERIGUS}),
     },
 
     [SPECIES_RUNERIGUS] =
@@ -6351,7 +6350,7 @@ const struct SpeciesInfo gSpeciesInfoGen5[] =
         .levelUpLearnset = sTirtougaLevelUpLearnset,
         .teachableLearnset = sTirtougaTeachableLearnset,
         .eggMoveLearnset = sTirtougaEggMoveLearnset,
-        .evolutions = EVOLUTION({EVO_LEVEL, 37, SPECIES_CARRACOSTA}),
+        .evolutions = EVOLUTION({EVO_LEVEL, 29, SPECIES_CARRACOSTA}),
     },
 
     [SPECIES_CARRACOSTA] =
@@ -8749,7 +8748,7 @@ const struct SpeciesInfo gSpeciesInfoGen5[] =
         .friendship = STANDARD_FRIENDSHIP,
         .growthRate = GROWTH_MEDIUM_FAST,
         .eggGroups = MON_EGG_GROUPS(EGG_GROUP_GRASS),
-        .abilities = { ABILITY_EFFECT_SPORE, ABILITY_NONE, ABILITY_REGENERATOR },
+        .abilities = { ABILITY_EFFECT_SPORE, ABILITY_REGENERATOR, ABILITY_REGENERATOR },
         .bodyColor = BODY_COLOR_WHITE,
         .speciesName = _("Foongus"),
         .cryId = CRY_FOONGUS,
@@ -8800,7 +8799,7 @@ const struct SpeciesInfo gSpeciesInfoGen5[] =
         .levelUpLearnset = sFoongusLevelUpLearnset,
         .teachableLearnset = sFoongusTeachableLearnset,
         .eggMoveLearnset = sFoongusEggMoveLearnset,
-        .evolutions = EVOLUTION({EVO_LEVEL, 39, SPECIES_AMOONGUSS}),
+        .evolutions = EVOLUTION({EVO_LEVEL, 34, SPECIES_AMOONGUSS}),
     },
 
     [SPECIES_AMOONGUSS] =
@@ -8822,7 +8821,7 @@ const struct SpeciesInfo gSpeciesInfoGen5[] =
         .friendship = STANDARD_FRIENDSHIP,
         .growthRate = GROWTH_MEDIUM_FAST,
         .eggGroups = MON_EGG_GROUPS(EGG_GROUP_GRASS),
-        .abilities = { ABILITY_EFFECT_SPORE, ABILITY_NONE, ABILITY_REGENERATOR },
+        .abilities = { ABILITY_EFFECT_SPORE, ABILITY_REGENERATOR, ABILITY_REGENERATOR },
         .bodyColor = BODY_COLOR_WHITE,
         .noFlip = TRUE,
         .speciesName = _("Amoonguss"),
@@ -9074,7 +9073,7 @@ const struct SpeciesInfo gSpeciesInfoGen5[] =
         .friendship = STANDARD_FRIENDSHIP,
         .growthRate = GROWTH_FAST,
         .eggGroups = MON_EGG_GROUPS(EGG_GROUP_WATER_1, EGG_GROUP_WATER_2),
-        .abilities = { ABILITY_HEALER, ABILITY_HYDRATION, ABILITY_REGENERATOR },
+        .abilities = { ABILITY_HYDRATION, ABILITY_REGENERATOR, ABILITY_REGENERATOR },
         .bodyColor = BODY_COLOR_PINK,
         .speciesName = _("Alomomola"),
         .cryId = CRY_ALOMOMOLA,
@@ -9144,7 +9143,7 @@ const struct SpeciesInfo gSpeciesInfoGen5[] =
         .friendship = STANDARD_FRIENDSHIP,
         .growthRate = GROWTH_MEDIUM_FAST,
         .eggGroups = MON_EGG_GROUPS(EGG_GROUP_BUG),
-        .abilities = { ABILITY_COMPOUND_EYES, ABILITY_UNNERVE, ABILITY_SWARM },
+        .abilities = { ABILITY_COMPOUND_EYES, ABILITY_NONE, ABILITY_SWARM },
         .bodyColor = BODY_COLOR_YELLOW,
         .speciesName = _("Joltik"),
         .cryId = CRY_JOLTIK,
@@ -9195,7 +9194,7 @@ const struct SpeciesInfo gSpeciesInfoGen5[] =
         .levelUpLearnset = sJoltikLevelUpLearnset,
         .teachableLearnset = sJoltikTeachableLearnset,
         .eggMoveLearnset = sJoltikEggMoveLearnset,
-        .evolutions = EVOLUTION({EVO_LEVEL, 36, SPECIES_GALVANTULA}),
+        .evolutions = EVOLUTION({EVO_LEVEL, 30, SPECIES_GALVANTULA}),
     },
 
     [SPECIES_GALVANTULA] =
@@ -9215,7 +9214,7 @@ const struct SpeciesInfo gSpeciesInfoGen5[] =
         .friendship = STANDARD_FRIENDSHIP,
         .growthRate = GROWTH_MEDIUM_FAST,
         .eggGroups = MON_EGG_GROUPS(EGG_GROUP_BUG),
-        .abilities = { ABILITY_COMPOUND_EYES, ABILITY_UNNERVE, ABILITY_SWARM },
+        .abilities = { ABILITY_COMPOUND_EYES, ABILITY_NONE, ABILITY_SWARM },
         .bodyColor = BODY_COLOR_YELLOW,
         .speciesName = _("Galvantula"),
         .cryId = CRY_GALVANTULA,
@@ -10153,7 +10152,7 @@ const struct SpeciesInfo gSpeciesInfoGen5[] =
         .levelUpLearnset = sLitwickLevelUpLearnset,
         .teachableLearnset = sLitwickTeachableLearnset,
         .eggMoveLearnset = sLitwickEggMoveLearnset,
-        .evolutions = EVOLUTION({EVO_LEVEL, 41, SPECIES_LAMPENT}),
+        .evolutions = EVOLUTION({EVO_LEVEL, 24, SPECIES_LAMPENT}),
     },
 
     [SPECIES_LAMPENT] =
@@ -10227,7 +10226,7 @@ const struct SpeciesInfo gSpeciesInfoGen5[] =
         )
         .levelUpLearnset = sLampentLevelUpLearnset,
         .teachableLearnset = sLampentTeachableLearnset,
-        .evolutions = EVOLUTION({EVO_ITEM, ITEM_DUSK_STONE, SPECIES_CHANDELURE}),
+        .evolutions = EVOLUTION({EVO_LEVEL, 41, SPECIES_CHANDELURE}),
     },
 
     [SPECIES_CHANDELURE] =
@@ -11149,7 +11148,7 @@ const struct SpeciesInfo gSpeciesInfoGen5[] =
         .levelUpLearnset = sMienfooLevelUpLearnset,
         .teachableLearnset = sMienfooTeachableLearnset,
         .eggMoveLearnset = sMienfooEggMoveLearnset,
-        .evolutions = EVOLUTION({EVO_LEVEL, 50, SPECIES_MIENSHAO}),
+        .evolutions = EVOLUTION({EVO_LEVEL, 36, SPECIES_MIENSHAO}),
     },
 
     [SPECIES_MIENSHAO] =
@@ -11589,7 +11588,7 @@ const struct SpeciesInfo gSpeciesInfoGen5[] =
         .levelUpLearnset = sPawniardLevelUpLearnset,
         .teachableLearnset = sPawniardTeachableLearnset,
         .eggMoveLearnset = sPawniardEggMoveLearnset,
-        .evolutions = EVOLUTION({EVO_LEVEL, 52, SPECIES_BISHARP}),
+        .evolutions = EVOLUTION({EVO_LEVEL, 40, SPECIES_BISHARP}),
     },
 
     [SPECIES_BISHARP] =
@@ -11658,7 +11657,7 @@ const struct SpeciesInfo gSpeciesInfoGen5[] =
         .levelUpLearnset = sBisharpLevelUpLearnset,
         .teachableLearnset = sBisharpTeachableLearnset,
     #if P_GEN_9_CROSS_EVOS
-        .evolutions = EVOLUTION({EVO_LEVEL, 0, SPECIES_KINGAMBIT, CONDITIONS({IF_DEFEAT_X_WITH_ITEMS, SPECIES_BISHARP, ITEM_LEADERS_CREST, 3})}),
+        .evolutions = EVOLUTION({EVO_LEVEL, 58, SPECIES_KINGAMBIT}),
     #endif
     },
 
@@ -11816,7 +11815,7 @@ const struct SpeciesInfo gSpeciesInfoGen5[] =
         .friendship = STANDARD_FRIENDSHIP,
         .growthRate = GROWTH_SLOW,
         .eggGroups = MON_EGG_GROUPS(EGG_GROUP_FLYING),
-        .abilities = { ABILITY_KEEN_EYE, ABILITY_SHEER_FORCE, ABILITY_HUSTLE },
+        .abilities = { ABILITY_SHEER_FORCE, ABILITY_HUSTLE, ABILITY_HUSTLE },
         .bodyColor = BODY_COLOR_WHITE,
         .speciesName = _("Rufflet"),
         .cryId = CRY_RUFFLET,
@@ -11866,7 +11865,7 @@ const struct SpeciesInfo gSpeciesInfoGen5[] =
         )
         .levelUpLearnset = sRuffletLevelUpLearnset,
         .teachableLearnset = sRuffletTeachableLearnset,
-        .evolutions = EVOLUTION({EVO_LEVEL, 54, SPECIES_BRAVIARY, CONDITIONS({IF_NOT_REGION, REGION_HISUI})},
+        .evolutions = EVOLUTION({EVO_LEVEL, 34, SPECIES_BRAVIARY, CONDITIONS({IF_NOT_REGION, REGION_HISUI})},
                                 {EVO_LEVEL, 54, SPECIES_BRAVIARY_HISUI, CONDITIONS({IF_REGION, REGION_HISUI})}),
     },
 
@@ -11887,7 +11886,7 @@ const struct SpeciesInfo gSpeciesInfoGen5[] =
         .friendship = STANDARD_FRIENDSHIP,
         .growthRate = GROWTH_SLOW,
         .eggGroups = MON_EGG_GROUPS(EGG_GROUP_FLYING),
-        .abilities = { ABILITY_KEEN_EYE, ABILITY_SHEER_FORCE, ABILITY_DEFIANT },
+        .abilities = { ABILITY_SHEER_FORCE, ABILITY_DEFIANT, ABILITY_DEFIANT },
         .bodyColor = BODY_COLOR_RED,
         .speciesName = _("Braviary"),
         .cryId = CRY_BRAVIARY,
@@ -12316,7 +12315,7 @@ const struct SpeciesInfo gSpeciesInfoGen5[] =
         .friendship = 35,
         .growthRate = GROWTH_SLOW,
         .eggGroups = MON_EGG_GROUPS(EGG_GROUP_DRAGON),
-        .abilities = { ABILITY_HUSTLE, ABILITY_NONE, ABILITY_NONE },
+        .abilities = { ABILITY_RATTLED, ABILITY_NONE, ABILITY_NONE },
         .bodyColor = BODY_COLOR_BLUE,
         .speciesName = _("Deino"),
         .cryId = CRY_DEINO,
@@ -12365,7 +12364,7 @@ const struct SpeciesInfo gSpeciesInfoGen5[] =
         .levelUpLearnset = sDeinoLevelUpLearnset,
         .teachableLearnset = sDeinoTeachableLearnset,
         .eggMoveLearnset = sDeinoEggMoveLearnset,
-        .evolutions = EVOLUTION({EVO_LEVEL, 50, SPECIES_ZWEILOUS}),
+        .evolutions = EVOLUTION({EVO_LEVEL, 24, SPECIES_ZWEILOUS}),
     },
 
     [SPECIES_ZWEILOUS] =
@@ -12385,7 +12384,7 @@ const struct SpeciesInfo gSpeciesInfoGen5[] =
         .friendship = 35,
         .growthRate = GROWTH_SLOW,
         .eggGroups = MON_EGG_GROUPS(EGG_GROUP_DRAGON),
-        .abilities = { ABILITY_HUSTLE, ABILITY_NONE, ABILITY_NONE },
+        .abilities = { ABILITY_RATTLED, ABILITY_NONE, ABILITY_NONE },
         .bodyColor = BODY_COLOR_BLUE,
         .speciesName = _("Zweilous"),
         .cryId = CRY_ZWEILOUS,
@@ -12432,7 +12431,7 @@ const struct SpeciesInfo gSpeciesInfoGen5[] =
         )
         .levelUpLearnset = sZweilousLevelUpLearnset,
         .teachableLearnset = sZweilousTeachableLearnset,
-        .evolutions = EVOLUTION({EVO_LEVEL, 64, SPECIES_HYDREIGON}),
+        .evolutions = EVOLUTION({EVO_LEVEL, 60, SPECIES_HYDREIGON}),
     },
 
     [SPECIES_HYDREIGON] =

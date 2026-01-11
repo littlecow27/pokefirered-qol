@@ -150,6 +150,16 @@ const u8 gOtherText_Check[] = _("CHECK");
 const u8 gText_PokeSum_Item_None[] = _("NONE");
 const u8 gOtherText_Open[] = _("OPEN");
 const u8 gOtherText_Deselect[] = _("DESELECT");
+// Powder Vial status menu options
+const u8 gText_StatusPoison[] = _("POISON");
+const u8 gText_StatusBurn[] = _("BURN");
+const u8 gText_StatusParalysis[] = _("PARALYSIS");
+const u8 gText_StatusSleep[] = _("SLEEP");
+const u8 gText_StatusFreeze[] = _("FREEZE");
+const u8 gText_StatusToxic[] = _("TOXIC");
+const u8 gText_PkmnAlreadyHasStatus[] = _("{STR_VAR_1} already has a\nstatus condition!{PAUSE_UNTIL_PRESS}");
+const u8 gText_StatusApplied[] = _("{STR_VAR_1} was afflicted\nwith {STR_VAR_2}!{PAUSE_UNTIL_PRESS}");
+const u8 gText_PartyFullyHealed[] = _("Your party was fully healed!{PAUSE_UNTIL_PRESS}");
 const u8 gText_PokeSum_DexNoUnknown[] = _("???");
 const u8 gText_FiveMarks[] = _("?????");
 const u8 gText_Slash[] = _("/");
@@ -216,6 +226,7 @@ const u8 gText_TossHowManyVar1s[] = _("Toss out how many\n{STR_VAR_1}(s)?");
 const u8 gText_ThrewAwayStrVar2StrVar1s[] = _("Threw away {STR_VAR_2}\n{STR_VAR_1}(s).");
 const u8 gText_ThrowAwayStrVar2OfThisItemQM[] = _("Throw away {STR_VAR_2} of\nthis item?");
 const u8 gText_OakForbidsUseOfItemHere[] = _("OAK: {PLAYER}!\nThis isn't the time to use that!{PAUSE_UNTIL_PRESS}");
+const u8 gText_BoxLinkBlockedEliteFour[] = _("The BOX LINK signal is blocked\nin this room!{PAUSE_UNTIL_PRESS}");
 const u8 gText_CantDismountBike[] = _("You can't dismount your BIKE here.{PAUSE_UNTIL_PRESS}");
 const u8 gText_ItemfinderResponding[] = _("Huh?\nThe ITEMFINDER's responding!\pThere's an item buried around here!{PAUSE_UNTIL_PRESS}");
 const u8 gText_ItemfinderShakingWildly[] = _("Oh!\nThe ITEMFINDER's shaking wildly!\pThere's an item buried underfoot!\p‥ ‥ ‥ ‥ ‥ ‥{PAUSE_UNTIL_PRESS}");
@@ -854,8 +865,10 @@ const u8 gText_PokeSum_ExpPoints[] = _("EXP. POINTS");
 const u8 gText_PokeSum_NextLv[] = _("NEXT LV.");
 const u8 gText_PokeSum_Controls_PageCancel[] = _("{DPAD_RIGHT}PAGE {A_BUTTON}CANCEL");
 const u8 gText_PokeSum_Controls_Cancel[] = _("{A_BUTTON}CANCEL");
+const u8 gText_PokeSum_Controls_PageRename[] = _("{DPAD_RIGHT}PAGE {A_BUTTON}RENAME");
 const u8 gText_PokeSum_Controls_PageJudge[] = _("{DPAD_LEFTRIGHT}PAGE {A_BUTTON}JUDGE");
 const u8 gText_PokeSum_Controls_PageDetail[] = _("{DPAD_LEFT}PAGE {A_BUTTON}DETAIL");
+const u8 gText_PokeSum_Controls_PageRelearn[] = _("{DPAD_LEFT}PG {START_BUTTON}RELEARN");
 const u8 gText_PokeSum_Controls_PickSwitch[] = _("{DPAD_UPDOWN}PICK {A_BUTTON}SWITCH");
 const u8 gText_PokeSum_Controls_Pick[] = _("{DPAD_UPDOWN}PICK");
 const u8 gText_PokeSum_Controls_PickDelete[] = _("{DPAD_UPDOWN}PICK {A_BUTTON}DELETE");
@@ -904,6 +917,18 @@ const u8 gText_FrameType[] = _("TYPE");
 const u8 gText_FrameTypeNumber[] = _("{COLOR GREEN}{SHADOW LIGHT_GREEN}");
 const u8 gText_ButtonTypeNormal[] = _("{COLOR GREEN}{SHADOW LIGHT_GREEN}NORMAL");
 const u8 gText_PickSwitchCancel[] = _("{DPAD_UPDOWN}PICK {DPAD_LEFTRIGHT}SWITCH {A_BUTTON}{B_BUTTON}CANCEL");
+const u8 gText_Difficulty[] = _("DIFFICULTY");
+const u8 gText_DifficultyNormal[] = _("NORMAL");
+const u8 gText_DifficultyHard[] = _("HARD");
+const u8 gText_DifficultyExpert[] = _("EXPERT");
+const u8 gText_OptionMenuSave[] = _("SAVE");
+const u8 gText_PickSwitchSave[] = _("{DPAD_UPDOWN}PICK {DPAD_LEFTRIGHT}SWITCH {A_BUTTON}SAVE");
+const u8 gText_DifficultyConfirm[] = _("Is this OK?");
+const u8 gText_TextSpeedDesc[] = _("Choose the speed at which text\nis displayed on screen.");
+const u8 gText_DifficultyNormalDesc[] = _("The standard experience.\nRecommended for most players.");
+const u8 gText_DifficultyHardDesc[] = _("A greater challenge.\nTrainers have stronger teams.");
+const u8 gText_DifficultyExpertDesc[] = _("A punishing challenge.\nFor experienced players only.");
+const u8 gText_SaveDesc[] = _("Confirm your options and\nstart the game.");
 const u8 gText_SaveFailed[] = _("レポ-トの かきこみに\nしっぱい しました‥");
 const u8 gText_SavingDontTurnOffThePower2[] = _("SAVING…\nDON'T TURN OFF THE POWER.");
 
@@ -1388,6 +1413,9 @@ const u8 gText_NextFusionMon[] = _("Choose {PKMN} to fuse with.");
 
 const u8 gText_ExpShareOn[] = _("The Exp. Share has been turned on.{PAUSE_UNTIL_PRESS}");
 const u8 gText_ExpShareOff[] = _("The Exp. Share has been turned off.{PAUSE_UNTIL_PRESS}");
+
+const u8 gText_RepellantOn[] = _("The Repellant is now active.{PAUSE_UNTIL_PRESS}");
+const u8 gText_RepellantOff[] = _("The Repellant has been turned off.{PAUSE_UNTIL_PRESS}");
 
 // stats
 const u8 gText_Attack[] = _("ATTACK");

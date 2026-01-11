@@ -167,6 +167,7 @@ extern const u8 gText_Withdraw[];
 extern const u8 gText_ReturnToPC[];
 
 extern const u8 gText_OakForbidsUseOfItemHere[];
+extern const u8 gText_BoxLinkBlockedEliteFour[];
 extern const u8 gText_CantDismountBike[];
 extern const u8 gText_CoinCase[];
 extern const u8 gText_PlayerUsedVar2[];
@@ -299,6 +300,16 @@ extern const u8 gText_SendOut[];
 extern const u8 gText_Enter[];
 extern const u8 gText_NoEntry[];
 extern const u8 gText_Store[];
+// Powder Vial status menu options
+extern const u8 gText_StatusPoison[];
+extern const u8 gText_StatusBurn[];
+extern const u8 gText_StatusParalysis[];
+extern const u8 gText_StatusSleep[];
+extern const u8 gText_StatusFreeze[];
+extern const u8 gText_StatusToxic[];
+extern const u8 gText_PkmnAlreadyHasStatus[];
+extern const u8 gText_StatusApplied[];
+extern const u8 gText_PartyFullyHealed[];
 extern const u8 gText_Trade4[];
 extern const u8 gText_NotPkmnOtherTrainerWants[];
 extern const u8 gText_ThatIsntAnEgg[];
@@ -950,6 +961,18 @@ extern const u8 gText_FrameTypeNumber[];
 extern const u8 gText_ButtonTypeNormal[];
 extern const u8 gTextJP_Type[];
 extern const u8 gText_PickSwitchCancel[];
+extern const u8 gText_Difficulty[];
+extern const u8 gText_DifficultyNormal[];
+extern const u8 gText_DifficultyHard[];
+extern const u8 gText_DifficultyExpert[];
+extern const u8 gText_OptionMenuSave[];
+extern const u8 gText_PickSwitchSave[];
+extern const u8 gText_DifficultyConfirm[];
+extern const u8 gText_TextSpeedDesc[];
+extern const u8 gText_DifficultyNormalDesc[];
+extern const u8 gText_DifficultyHardDesc[];
+extern const u8 gText_DifficultyExpertDesc[];
+extern const u8 gText_SaveDesc[];
 
 // evolution_scene
 extern const u8 gText_PkmnIsEvolving[];
@@ -1493,6 +1516,7 @@ extern const u8 gText_PokeSum_Controls_PickSwitch[];
 extern const u8 gText_PokeSum_Controls_Pick[];
 extern const u8 gText_PokeSum_NoData[];
 extern const u8 gText_PokeSum_Controls_PageDetail[];
+extern const u8 gText_PokeSum_Controls_PageRelearn[];
 extern const u8 gText_PokeSum_DexNoUnknown[];
 extern const u8 gText_PokeSum_Item_None[];
 extern const u8 gText_PokeSum_OneHyphen[];
@@ -1519,6 +1543,7 @@ extern const u8 gText_PokeSum_NextLv[];
 extern const u8 gText_PokeSum_PageName_PokemonInfo[];
 extern const u8 gText_PokeSum_Controls_PageCancel[];
 extern const u8 gText_PokeSum_Controls_Cancel[];
+extern const u8 gText_PokeSum_Controls_PageRename[];
 extern const u8 gText_PokeSum_PageName_PokemonSkills[];
 extern const u8 gText_PokeSum_Controls_PageJudge[];
 extern const u8 gText_PokeSum_Controls_PickDelete[];
@@ -1561,6 +1586,10 @@ extern const u8 gText_NextFusionMon[];
 // Exp. Share
 extern const u8 gText_ExpShareOn[];
 extern const u8 gText_ExpShareOff[];
+
+// Repellant
+extern const u8 gText_RepellantOn[];
+extern const u8 gText_RepellantOff[];
 
 // stats
 extern const u8 gText_Attack[];

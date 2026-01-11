@@ -355,3 +355,46 @@ PalletTown_ProfessorOaksLab_Text_RivalIllCompleteThePokedex::
     .string "ONE ISLAND first…\p"
     .string "Anyways, I'm outta here!$"
 
+PalletTown_ProfessorOaksLab_Text_AideGiftIntro::
+    .string "Oh, wait just a moment!\p"
+    .string "The PROFESSOR asked me to give\n"
+    .string "you something for your journey.$"
+
+PalletTown_ProfessorOaksLab_Text_AideReceivedInfiniteCandy::
+    .string "{PLAYER} received an\n"
+    .string "INFINITE CANDY from the AIDE!$"
+
+PalletTown_ProfessorOaksLab_Text_AideReceivedCapCandy::
+    .string "{PLAYER} received a\n"
+    .string "CAP CANDY from the AIDE!$"
+
+PalletTown_ProfessorOaksLab_Text_AideReceivedBoxLink::
+    .string "{PLAYER} received a\n"
+    .string "POKéMON BOX LINK from the AIDE!$"
+
+PalletTown_ProfessorOaksLab_Text_AideReceivedRepellant::
+    .string "{PLAYER} received a\n"
+    .string "REPELLANT from the AIDE!$"
+
+PalletTown_ProfessorOaksLab_Text_AideReceivedPowderVial::
+    .string "{PLAYER} received a\n"
+    .string "POWDER VIAL from the AIDE!$"
+
+PalletTown_ProfessorOaksLab_Text_AideReceivedNurseKit::
+    .string "{PLAYER} received a\n"
+    .string "NURSE KIT from the AIDE!$"
+
+PalletTown_ProfessorOaksLab_Text_AideGiftOutro::
+    .string "These special candies can be\n"
+    .string "used over and over again!\p"
+    .string "The BOX LINK lets you access\n"
+    .string "your PC storage anywhere!\p"
+    .string "The REPELLANT can be toggled\n"
+    .string "on to prevent wild encounters!\p"
+    .string "The POWDER VIAL can apply\n"
+    .string "status conditions to POKéMON!\p"
+    .string "The NURSE KIT fully heals\n"
+    .string "your entire party!\p"
+    .string "Take good care of your POKéMON!\n"
+    .string "Good luck out there!$"
+

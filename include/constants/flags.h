@@ -43,7 +43,7 @@
 #define FLAG_TEMP_1F     (TEMP_FLAGS_START + 0x1F)
 #define TEMP_FLAGS_END   FLAG_TEMP_1F
 
-#define FLAG_0x020               0x020
+#define FLAG_RECEIVED_AIDE_GIFT  0x020
 #define FLAG_0x021               0x021
 #define FLAG_0x022               0x022
 #define FLAG_0x023               0x023
@@ -1253,8 +1253,8 @@
 #define FLAG_DEFEATED_LANCE           0x4BB
 #define FLAG_DEFEATED_CHAMP           0x4BC
 
-// Unused?
-#define FLAG_0x4BD               0x4BD
+// Elite Four flags
+#define FLAG_DISABLE_BOX_LINK    0x4BD // Disables Pokemon Box Link during E4 gauntlet
 #define FLAG_0x4BE               0x4BE
 #define FLAG_0x4BF               0x4BF
 #define FLAG_0x4C0               0x4C0
@@ -1340,7 +1340,7 @@
 #define FLAG_SYS_SPECIAL_WILD_BATTLE                                (SYS_FLAGS + 0x7)
 
 #define FLAG_SYS_QL_DEPARTED                                        (SYS_FLAGS + 0x8)
-#define FLAG_0x809                                                  (SYS_FLAGS + 0x9)
+#define FLAG_SYS_REPELLANT_ACTIVE                                   (SYS_FLAGS + 0x9)
 #define FLAG_0x80A                                                  (SYS_FLAGS + 0xA)
 #define FLAG_0x80B                                                  (SYS_FLAGS + 0xB)
 #define FLAG_0x80C                                                  (SYS_FLAGS + 0xC)

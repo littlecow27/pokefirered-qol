@@ -598,7 +598,7 @@ const struct SpeciesInfo gSpeciesInfoGen6[] =
         .friendship = STANDARD_FRIENDSHIP,
         .growthRate = GROWTH_MEDIUM_SLOW,
         .eggGroups = MON_EGG_GROUPS(EGG_GROUP_WATER_1),
-        .abilities = { ABILITY_TORRENT, ABILITY_NONE, ABILITY_PROTEAN },
+        .abilities = { ABILITY_TORRENT, ABILITY_PROTEAN, ABILITY_PROTEAN },
         .bodyColor = BODY_COLOR_BLUE,
         .speciesName = _("Froakie"),
         .cryId = CRY_FROAKIE,
@@ -671,7 +671,7 @@ const struct SpeciesInfo gSpeciesInfoGen6[] =
         .friendship = STANDARD_FRIENDSHIP,
         .growthRate = GROWTH_MEDIUM_SLOW,
         .eggGroups = MON_EGG_GROUPS(EGG_GROUP_WATER_1),
-        .abilities = { ABILITY_TORRENT, ABILITY_NONE, ABILITY_PROTEAN },
+        .abilities = { ABILITY_TORRENT, ABILITY_PROTEAN, ABILITY_PROTEAN },
         .bodyColor = BODY_COLOR_BLUE,
         .speciesName = _("Frogadier"),
         .cryId = CRY_FROGADIER,
@@ -738,7 +738,7 @@ const struct SpeciesInfo gSpeciesInfoGen6[] =
         .friendship = STANDARD_FRIENDSHIP,
         .growthRate = GROWTH_MEDIUM_SLOW,
         .eggGroups = MON_EGG_GROUPS(EGG_GROUP_WATER_1),
-        .abilities = { ABILITY_TORRENT, ABILITY_NONE, ABILITY_PROTEAN },
+        .abilities = { ABILITY_TORRENT, ABILITY_PROTEAN, ABILITY_PROTEAN },
         .bodyColor = BODY_COLOR_BLUE,
         .noFlip = TRUE,
         .speciesName = _("Greninja"),
@@ -1146,7 +1146,7 @@ const struct SpeciesInfo gSpeciesInfoGen6[] =
         .friendship = STANDARD_FRIENDSHIP,
         .growthRate = GROWTH_MEDIUM_SLOW,
         .eggGroups = MON_EGG_GROUPS(EGG_GROUP_FLYING),
-        .abilities = { ABILITY_BIG_PECKS, ABILITY_NONE, ABILITY_GALE_WINGS },
+        .abilities = { ABILITY_BIG_PECKS, ABILITY_GALE_WINGS, ABILITY_GALE_WINGS },
         .bodyColor = BODY_COLOR_RED,
         .speciesName = _("Fletchling"),
         .cryId = CRY_FLETCHLING,
@@ -1218,7 +1218,7 @@ const struct SpeciesInfo gSpeciesInfoGen6[] =
         .friendship = STANDARD_FRIENDSHIP,
         .growthRate = GROWTH_MEDIUM_SLOW,
         .eggGroups = MON_EGG_GROUPS(EGG_GROUP_FLYING),
-        .abilities = { ABILITY_FLAME_BODY, ABILITY_NONE, ABILITY_GALE_WINGS },
+        .abilities = { ABILITY_FLAME_BODY, ABILITY_GALE_WINGS, ABILITY_GALE_WINGS },
         .bodyColor = BODY_COLOR_RED,
         .speciesName = _("Fletchinder"),
         .cryId = CRY_FLETCHINDER,
@@ -1292,7 +1292,7 @@ const struct SpeciesInfo gSpeciesInfoGen6[] =
         .friendship = STANDARD_FRIENDSHIP,
         .growthRate = GROWTH_MEDIUM_SLOW,
         .eggGroups = MON_EGG_GROUPS(EGG_GROUP_FLYING),
-        .abilities = { ABILITY_FLAME_BODY, ABILITY_NONE, ABILITY_GALE_WINGS },
+        .abilities = { ABILITY_FLAME_BODY, ABILITY_GALE_WINGS, ABILITY_GALE_WINGS },
         .bodyColor = BODY_COLOR_RED,
         .speciesName = _("Talonflame"),
         .cryId = CRY_TALONFLAME,
@@ -2148,7 +2148,7 @@ const struct SpeciesInfo gSpeciesInfoGen6[] =
         .backPicYOffset = 2,                                                                    \
         .levelUpLearnset = sFloetteLevelUpLearnset,                                             \
         .teachableLearnset = sFloetteTeachableLearnset,                                         \
-        .evolutions = EVOLUTION({EVO_ITEM, ITEM_SHINY_STONE, SPECIES_FLORGES_ ##FORM}),\
+        .evolutions = EVOLUTION({EVO_LEVEL, 41, SPECIES_FLORGES_ ##FORM}),\
         FLOETTE_MISC_INFO(form, FORM, iconPal)
 
     [SPECIES_FLOETTE_RED] =
@@ -2468,7 +2468,7 @@ const struct SpeciesInfo gSpeciesInfoGen6[] =
         .levelUpLearnset = sSkiddoLevelUpLearnset,
         .teachableLearnset = sSkiddoTeachableLearnset,
         .eggMoveLearnset = sSkiddoEggMoveLearnset,
-        .evolutions = EVOLUTION({EVO_LEVEL, 32, SPECIES_GOGOAT}),
+        .evolutions = EVOLUTION({EVO_LEVEL, 31, SPECIES_GOGOAT}),
     },
 
     [SPECIES_GOGOAT] =
@@ -3254,7 +3254,7 @@ const struct SpeciesInfo gSpeciesInfoGen6[] =
         )
         .levelUpLearnset = sDoubladeLevelUpLearnset,
         .teachableLearnset = sDoubladeTeachableLearnset,
-        .evolutions = EVOLUTION({EVO_ITEM, ITEM_DUSK_STONE, SPECIES_AEGISLASH_SHIELD}),
+        .evolutions = EVOLUTION({EVO_LEVEL, 60, SPECIES_AEGISLASH_SHIELD}),
     },
 
 #define AEGISLASH_MAIN_STAT (P_UPDATED_STATS >= GEN_8 ? 140 : 150)
@@ -4511,7 +4511,7 @@ const struct SpeciesInfo gSpeciesInfoGen6[] =
         .friendship = STANDARD_FRIENDSHIP,
         .growthRate = GROWTH_MEDIUM_FAST,
         .eggGroups = MON_EGG_GROUPS(EGG_GROUP_MONSTER, EGG_GROUP_DRAGON),
-        .abilities = { ABILITY_DRY_SKIN, ABILITY_SAND_VEIL, ABILITY_SOLAR_POWER },
+        .abilities = { ABILITY_DRY_SKIN, ABILITY_SOLAR_POWER, ABILITY_SOLAR_POWER },
         .bodyColor = BODY_COLOR_YELLOW,
         .speciesName = _("Helioptile"),
         .cryId = CRY_HELIOPTILE,
@@ -4560,7 +4560,7 @@ const struct SpeciesInfo gSpeciesInfoGen6[] =
         .levelUpLearnset = sHelioptileLevelUpLearnset,
         .teachableLearnset = sHelioptileTeachableLearnset,
         .eggMoveLearnset = sHelioptileEggMoveLearnset,
-        .evolutions = EVOLUTION({EVO_ITEM, ITEM_SUN_STONE, SPECIES_HELIOLISK}),
+        .evolutions = EVOLUTION({EVO_LEVEL, 24, SPECIES_HELIOLISK}),
     },
 
     [SPECIES_HELIOLISK] =
@@ -4581,7 +4581,7 @@ const struct SpeciesInfo gSpeciesInfoGen6[] =
         .friendship = STANDARD_FRIENDSHIP,
         .growthRate = GROWTH_MEDIUM_FAST,
         .eggGroups = MON_EGG_GROUPS(EGG_GROUP_MONSTER, EGG_GROUP_DRAGON),
-        .abilities = { ABILITY_DRY_SKIN, ABILITY_SAND_VEIL, ABILITY_SOLAR_POWER },
+        .abilities = { ABILITY_DRY_SKIN, ABILITY_SOLAR_POWER, ABILITY_SOLAR_POWER },
         .bodyColor = BODY_COLOR_YELLOW,
         .speciesName = _("Heliolisk"),
         .cryId = CRY_HELIOLISK,
@@ -4788,7 +4788,7 @@ const struct SpeciesInfo gSpeciesInfoGen6[] =
         .friendship = STANDARD_FRIENDSHIP,
         .growthRate = GROWTH_MEDIUM_FAST,
         .eggGroups = MON_EGG_GROUPS(EGG_GROUP_MONSTER),
-        .abilities = { ABILITY_REFRIGERATE, ABILITY_NONE, ABILITY_SNOW_WARNING },
+        .abilities = { ABILITY_REFRIGERATE, ABILITY_SNOW_WARNING, ABILITY_SNOW_WARNING },
         .bodyColor = BODY_COLOR_BLUE,
         .speciesName = _("Amaura"),
         .cryId = CRY_AMAURA,
@@ -4844,7 +4844,7 @@ const struct SpeciesInfo gSpeciesInfoGen6[] =
         .levelUpLearnset = sAmauraLevelUpLearnset,
         .teachableLearnset = sAmauraTeachableLearnset,
         .eggMoveLearnset = sAmauraEggMoveLearnset,
-        .evolutions = EVOLUTION({EVO_LEVEL, 39, SPECIES_AURORUS, CONDITIONS({IF_TIME, TIME_NIGHT})}),
+        .evolutions = EVOLUTION({EVO_LEVEL, 29, SPECIES_AURORUS}),
     },
 
     [SPECIES_AURORUS] =
@@ -4864,7 +4864,7 @@ const struct SpeciesInfo gSpeciesInfoGen6[] =
         .friendship = STANDARD_FRIENDSHIP,
         .growthRate = GROWTH_MEDIUM_FAST,
         .eggGroups = MON_EGG_GROUPS(EGG_GROUP_MONSTER),
-        .abilities = { ABILITY_REFRIGERATE, ABILITY_NONE, ABILITY_SNOW_WARNING },
+        .abilities = { ABILITY_REFRIGERATE, ABILITY_SNOW_WARNING, ABILITY_SNOW_WARNING },
         .bodyColor = BODY_COLOR_BLUE,
         .speciesName = _("Aurorus"),
         .cryId = CRY_AURORUS,
@@ -4937,7 +4937,7 @@ const struct SpeciesInfo gSpeciesInfoGen6[] =
     #else
         .eggGroups = MON_EGG_GROUPS(EGG_GROUP_HUMAN_LIKE),
     #endif
-        .abilities = { ABILITY_LIMBER, ABILITY_UNBURDEN, ABILITY_MOLD_BREAKER },
+        .abilities = { ABILITY_UNBURDEN, ABILITY_MOLD_BREAKER, ABILITY_MOLD_BREAKER },
         .bodyColor = BODY_COLOR_GREEN,
         .speciesName = _("Hawlucha"),
         .cryId = CRY_HAWLUCHA,
@@ -6548,7 +6548,7 @@ const struct SpeciesInfo gSpeciesInfoGen6[] =
     #else
         .eggGroups = MON_EGG_GROUPS(EGG_GROUP_FLYING),
     #endif
-        .abilities = { ABILITY_FRISK, ABILITY_INFILTRATOR, ABILITY_TELEPATHY },
+        .abilities = { ABILITY_INFILTRATOR, ABILITY_NONE, ABILITY_TELEPATHY },
         .bodyColor = BODY_COLOR_PURPLE,
         .speciesName = _("Noibat"),
         .cryId = CRY_NOIBAT,
@@ -6603,7 +6603,7 @@ const struct SpeciesInfo gSpeciesInfoGen6[] =
         .levelUpLearnset = sNoibatLevelUpLearnset,
         .teachableLearnset = sNoibatTeachableLearnset,
         .eggMoveLearnset = sNoibatEggMoveLearnset,
-        .evolutions = EVOLUTION({EVO_LEVEL, 48, SPECIES_NOIVERN}),
+        .evolutions = EVOLUTION({EVO_LEVEL, 36, SPECIES_NOIVERN}),
     },
 
     [SPECIES_NOIVERN] =
@@ -6627,7 +6627,7 @@ const struct SpeciesInfo gSpeciesInfoGen6[] =
     #else
         .eggGroups = MON_EGG_GROUPS(EGG_GROUP_FLYING),
     #endif
-        .abilities = { ABILITY_FRISK, ABILITY_INFILTRATOR, ABILITY_TELEPATHY },
+        .abilities = { ABILITY_INFILTRATOR, ABILITY_NONE, ABILITY_TELEPATHY },
         .bodyColor = BODY_COLOR_PURPLE,
         .speciesName = _("Noivern"),
         .cryId = CRY_NOIVERN,
